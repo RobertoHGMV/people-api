@@ -3,7 +3,7 @@ using People.Business.Services;
 using People.Domain.Repositories;
 using People.Domain.Services;
 using People.Infra.Context;
-using People.Infra.Entities;
+using People.Infra.EntitiesFactory;
 using People.Infra.Repositories;
 
 namespace People.DependencyInjection

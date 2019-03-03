@@ -1,6 +1,5 @@
-﻿using People.Domain.Enums;
-using People.Domain.Models;
-using People.Infra.Entities;
+﻿using People.Domain.Models;
+using People.Infra.EntitiesFactory;
 using System.Collections.Generic;
 
 namespace People.Infra.Context
@@ -9,7 +8,7 @@ namespace People.Infra.Context
     {
         public PersonDataContext(IEntityFactory entityFactory)
         {
-            People = new List<Person>();
+            People = entityFactory.CreatePeople();
             States = entityFactory.CreateStates();
         }
 
