@@ -3,8 +3,6 @@ using People.Common.Validations;
 using People.Domain.Enums;
 using People.Domain.ValueObjects;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace People.Domain.Models
 {

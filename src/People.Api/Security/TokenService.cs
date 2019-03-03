@@ -27,7 +27,7 @@ namespace People.Api.Security
             var jwtSecurityToken = tokenHandler.WriteToken(securityToken);
             var expiration = securityTokenDescriptor.Expires.Value;
 
-            return new { access_token = jwtSecurityToken, expires_in = expiration };
+            return new { accessToken = jwtSecurityToken, expiresIn = expiration };
         }
 
         private SymmetricSecurityKey GetSecurityKey()

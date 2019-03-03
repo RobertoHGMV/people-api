@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using People.Api.Security;
+using System;
 
 namespace People.Api.Controllers
 {
@@ -19,8 +20,14 @@ namespace People.Api.Controllers
         [Route("v1/[controller]")]
         public IActionResult Authenticate()
         {
-            var jwtToken = _tokenService.CreateJwtToken();
-            return Ok(jwtToken);
+            try
+            {
+                return Ok(_tokenService.CreateJwtToken());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }

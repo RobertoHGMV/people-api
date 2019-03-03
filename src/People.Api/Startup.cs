@@ -67,28 +67,35 @@ namespace People.Api
             services.AddTransient<ITokenService, TokenService>();
         }
 
+        #region Adiciona Autorização
         private void AddJwtAuthorization(IServiceCollection services)
         {
-            var tokenSettings = new TokenSettings();
-
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(jwtBearerOptions =>
                 {
-                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateActor = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = tokenSettings.Issuer,
-                        ValidAudience = tokenSettings.Audience,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
-                    };
+                    jwtBearerOptions.TokenValidationParameters = GetTokenParameters();
                 });
 
             services.AddAuthorization();
         }
+
+        private TokenValidationParameters GetTokenParameters()
+        {
+            var tokenSettings = new TokenSettings();
+
+            return new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateActor = true,
+                ValidateAudience = true,
+                ValidateLifetime = true,
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = tokenSettings.Issuer,
+                ValidAudience = tokenSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
+            };
+        }
+        #endregion
     }
 }

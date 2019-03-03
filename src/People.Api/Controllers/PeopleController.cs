@@ -23,8 +23,7 @@ namespace People.Api.Controllers
         {
             try
             {
-                var people = _service.GetAll();
-                return Ok(people);
+                return Ok(new ResultViewModel { Success = true, Docs = _service.GetAll() });
             }
             catch (Exception ex)
             {
@@ -41,7 +40,7 @@ namespace People.Api.Controllers
                 if (person == null)
                     return NotFound(new ResultViewModel { Success = false, Docs = { } });
 
-                return Ok(person);
+                return Ok(new ResultViewModel { Success = true, Docs = person });
             }
             catch (Exception ex)
             {
@@ -54,8 +53,7 @@ namespace People.Api.Controllers
         {
             try
             {
-                var people = _service.GetByUf(uf);
-                return Ok(people);
+                return Ok(new ResultViewModel { Success = true, Docs = _service.GetByUf(uf) });
             }
             catch (Exception ex)
             {
@@ -74,7 +72,7 @@ namespace People.Api.Controllers
                 if (person.HasNotifications)
                     return BadRequest(new ResultViewModel { Success = false, Docs = person.Notifications });
 
-                return Created($"v1/people/{person.Id}", _service.CreatePersonListModel(person));
+                return Created($"v1/people/{person.Id}", new ResultViewModel { Success = true, Docs = _service.CreatePersonListModel(person) });
             }
             catch (Exception ex)
             {
@@ -93,7 +91,7 @@ namespace People.Api.Controllers
                 if (person.HasNotifications)
                     return BadRequest(new ResultViewModel { Success = false, Docs = person.Notifications });
 
-                return Ok(_service.CreatePersonListModel(person));
+                return Ok(new ResultViewModel { Success = true, Docs = _service.CreatePersonListModel(person) });
             }
             catch (Exception ex)
             {

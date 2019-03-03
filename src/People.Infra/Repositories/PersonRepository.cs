@@ -10,7 +10,7 @@ namespace People.Infra.Repositories
 {
     public class PersonRepository : IPersonRepository
     {
-        private IPersonDataContext _personDataContext;
+        IPersonDataContext _personDataContext;
 
         public PersonRepository(IPersonDataContext personDataContext)
         {

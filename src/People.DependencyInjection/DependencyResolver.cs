@@ -16,6 +16,8 @@ namespace People.DependencyInjection
             services.AddTransient<IEntityFactory, EntityFactory>();
             services.AddTransient<IPersonRepository, PersonRepository>();
             services.AddTransient<IPersonService, PersonService>();
+            services.AddTransient<IStateRepository, StateRepository>();
+            services.AddTransient<IStateService, StateService>();
         }
     }
 }
